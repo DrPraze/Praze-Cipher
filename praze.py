@@ -1,4 +1,4 @@
-"""Created and written by: Praise James"""
+"""Created and implemented by: Praise James"""
 import timeit
 # import binascii
 
@@ -53,7 +53,7 @@ def __encrypt__(key1, key2, text = "Praze cipher"):
 	for i in range(len(data_)//2):
 		try:
 			x = data_.pop(0)
-			y =	data_.pop(1)
+			y =	data_.pop(0)
 		except IndexError:
 			print('\nfinished analyzing data\n')
 		encrypt(x, y, key1, key2)
@@ -90,8 +90,6 @@ def enc_from_file(file):
 	text = open(file, 'r').read()
 
 	__encrypt__(key1 = key1, key2 = key2, text = text)
-	__decrypt__(encryption, result, crack)
-	__encrypt__(key1 = key1, key2 = key2, text = outcome)
 
 	with open('ciphertext', 'w+') as f:
 		f.write(str(result))
@@ -106,6 +104,20 @@ def dec_from_file():
 	encryption = open('encryptionFile.txt', 'r').read()
 
 	__decrypt__(encryption, result, crack)
+
+def encrypt_image():
+	from PIL import Image
+	from tkinter.filedialog import askopenfilename
+
+	image = Image.open(askopenfilename(title = "Open Image"), 'r')
+	data = ''
+	imgdata = iter(image.getdata())
+
+	pixels = [value for value in imgdata.__next__()[:3]+
+								 imgdata.__next__()[:3]+
+								 imgdata.__next__()[:3]]
+	declist = [i for i in pixels]
+
 
 
 
@@ -123,14 +135,9 @@ def dec_from_file():
 # clean_data('schrodingers cat, quantum physics, my password is OldSpeedyThug404!')
 # convert_to_char(data_)
 
-#Note: you have to encrypt the data  decrypt it and encrypt it again, to keep the text in
-#good piece, make sure you use the same key1 and key2 in the encrypting twice
 #make sure 2 spaces are added to the data you're encrypting, and ignore the last letter of any decrypted result
 
-# __encrypt__(key1 = 2, key2 = 3, text = "This is a test text (636543291) $%^&, for comparing")
-# __decrypt__(encryption, result, crack)
-# __encrypt__(key1 = 2, key2 = 3, text = outcome)
-
+# __encrypt__(key1 = 2, key2 = 3, text = "This is a test text (636543291) $%^&, for comparing  ")
 # __decrypt__(encryption, result, crack)
 
 start = timeit.default_timer()
@@ -191,8 +198,6 @@ print(f"time taken is: {stop - start} seconds")
 # a detailed and better explanation is pondered on my whitepaper  
 # """)
 # __decrypt__(encryption, result, crack)
-# __encrypt__(key1 = 117233, key2 = 2398449, text = outcome)
 
-# __decrypt__(encryption, result, crack)
 
 
