@@ -1,5 +1,5 @@
 # Praze-Cipher
-Python implementation of the praze cipher by Praise James
+A Python implementation of an encryption algorithm I developed
 
 
 **PRAZE CIPHER ALGORITHM**
